@@ -55,6 +55,7 @@ public class Lab8P1_GermanFigueroa {
         
         while(D < 3 || M < 3 || L < 3){
             int x = random.nextInt(5);
+            int y = random.nextInt(5);
         }
     }
 }
