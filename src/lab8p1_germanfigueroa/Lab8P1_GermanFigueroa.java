@@ -76,25 +76,51 @@ public class Lab8P1_GermanFigueroa {
         int tiempo = 0;
         
         while(tiempo < 60 && pos < 24){
+            int filaActual = pos/5;
+            int columnaActual = pos % 5;
+            
+            System.out.println("Tablero");
+            for(int i = 0; i < 5; i++){
+                for(int j = 0; j < 5; j++){
+                    System.out.print("[" + matriz[i][j] + "]");  
+                }
+                System.out.println();
+            }
             int dado = random.nextInt(5)+1;
             int incrementoTiempo = random.nextInt(10)+1;
-            tiempo += random.nextInt(10)+1;
+            tiempo += incrementoTiempo;
             
             int nuevaPos = pos + dado;
             if(nuevaPos > 24) nuevaPos = 24;
+            if(nuevaPos < 0) nuevaPos = 0;
             
-            int fila = nuevaPos/5;
-            int columna = nuevaPos % 5;
+            int fila = pos/5;
+            int columna = pos%5;
             char casilla = matriz[fila][columna];
             
             if(casilla == 'D'){
                 System.out.println("Mia te detuvo");
             }else{
-                if (casilla == 'M') nuevaPos += 1;
-                if(casilla == 'L') nuevaPos += 3;
-                if(nuevaPos > 24) nuevaPos += 24;
+                if(casilla == 'M'){
+                    nuevaPos += 1;
+                    if(nuevaPos > 24) nuevaPos = 24;
+                }
+                if(casilla == 'L'){
+                    nuevaPos += 3;
+                    if(nuevaPos > 24) nuevaPos = 24;
+                }
+                matriz[filaActual][columnaActual] = ' ';
+                pos = nuevaPos;
+                int filaNueva = pos/5;
+                int columnaNueva = pos%5;
+                matriz[filaNueva][columnaNueva] = 'E';
             }
+            
         }
-        
+        if(pos == 24 && tiempo < 60){
+            System.out.println("Escapaste, lograste tomar el bus");
+        }else{
+            System.out.println("No lograste escapar, toca regresar al laboratorio");
+        }
     }
 }
