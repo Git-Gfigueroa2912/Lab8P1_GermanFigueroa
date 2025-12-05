@@ -77,6 +77,7 @@ public class Lab8P1_GermanFigueroa {
         
         while(tiempo < 60 && pos < 24){
             int dado = random.nextInt(5)+1;
+            int incrementoTiempo = random.nextInt(10)+1;
             tiempo += random.nextInt(10)+1;
             
             int nuevaPos = pos + dado;
@@ -91,7 +92,9 @@ public class Lab8P1_GermanFigueroa {
             }else{
                 if (casilla == 'M') nuevaPos += 1;
                 if(casilla == 'L') nuevaPos += 3;
+                if(nuevaPos > 24) nuevaPos += 24;
             }
         }
+        
     }
 }
